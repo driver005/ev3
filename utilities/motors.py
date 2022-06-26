@@ -85,6 +85,6 @@ class Motors():
             if(turn < 0):
                 self.robot.drive(self.speed, -360)
             else:
-                self.robot.drive(self.speed, 100)
+                self.robot.drive(self.speed, 360)
             
         self.robot.stop()
