@@ -1,6 +1,6 @@
 #!/usr/bin/env pybricks-micropython
-from pybricks.ev3devices import Motor, ColorSensor
-from pybricks.parameters import Port, Color
+from pybricks.ev3devices import Motor
+from pybricks.parameters import Port, Color, Stop
 from pybricks.tools import wait
 from pybricks.robotics import DriveBase
 from utilities.sensor import Sensor
@@ -78,13 +78,20 @@ class Motors():
 
     def turn(self, turn):
         self.robot.turn(turn)
-    
-    def curve(self, turn):
-        self.turn(turn-(turn/2))
-        while self.line_sensor.color() != Color.BLACK:
-            if(turn < 0):
-                self.robot.drive(self.speed, -360)
-            else:
-                self.robot.drive(self.speed, 360)
-            
+
+        
+    def tank_turn(self, turn, cs):
+        self.line_sensor.color()
+        self.robot.turn(turn-(turn/2))
         self.robot.stop()
+        while cs.color() != Color.BLACK:
+            if(turn > 0):
+                self.left_motor.run(360)
+                self.right_motor.run(-360)
+            else:
+                self.left_motor.run(-360)
+                self.right_motor.run(360)
+        
+        self.left_motor.stop()
+        self.right_motor.stop()
+        

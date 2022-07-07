@@ -1,6 +1,6 @@
 #!/usr/bin/env pybricks-micropython
 
-from activity.scan_block import ScanBlock
+from activity.room1.scan_block import ScanBlock
 
 
 class Room():

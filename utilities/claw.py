@@ -26,3 +26,6 @@ class Claw():
         self.sensors.start()
         self.move(475)
         self.motor.reset_angle(0)
+        self.moveTo(-40)
+        self.sensors.moveTo(0)
+        self.moveTo(0)
